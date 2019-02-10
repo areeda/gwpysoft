@@ -3,8 +3,14 @@
 # Set up a new python virtualenv for the GWpy software stack
 
 # import library functions
-here_=`cd "$( dirname $(readlink -f "${BASH_SOURCE[0]}" ) )" && pwd`
-. ${here_}/gwpysoftlib.sh
+myscript="${BASH_SOURCE[0]}"
+if [ -L ${myscript} ]
+then
+    myscript=$(readlink ${myscript})
+fi
+here_=$(cd "$( dirname "${myscript}" )" && pwd)
+echo here: X${here_}X
+source ${here_}/gwpysoftlib.sh
 
 # -----------------------------------------------------------------------------
 
